@@ -15,15 +15,15 @@ public class RedisRepository {
 
 	private final RedisTemplate redisTemplate;
 
-	public void save(String key, Object value) {
-		ValueOperations<String, Object> valueOperations = redisTemplate.opsForValue();
+	public void save(String key, String value) {
+		ValueOperations<String, String> valueOperations = redisTemplate.opsForValue();
 		valueOperations.set(key, value);
 		redisTemplate.expire(key, 7, TimeUnit.DAYS);
 	}
 
 	public Optional<Long> getMemberId(String key) {
-		ValueOperations<String, Long> valueOperations = redisTemplate.opsForValue();
-		Long memberId = valueOperations.get(key);
+		ValueOperations<String, String> valueOperations = redisTemplate.opsForValue();
+		Long memberId = Long.valueOf(valueOperations.get(key));
 		return Optional.ofNullable(memberId);
 	}
 

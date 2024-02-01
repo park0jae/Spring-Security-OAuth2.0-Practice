@@ -1,4 +1,4 @@
-package com.pgms.coredomain.common;
+package com.pgms.coredomain.domain.common;
 
 import java.time.LocalDateTime;
 

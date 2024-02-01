@@ -1,4 +1,4 @@
-package com.pgms.coredomain.member;
+package com.pgms.coredomain.domain.member;
 
 public enum Role {
 	ROLE_USER,

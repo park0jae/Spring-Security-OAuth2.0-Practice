@@ -1,4 +1,9 @@
-package com.pgms.coredomain.member;
+package com.pgms.coredomain.domain.member;
+
+import static com.pgms.coredomain.domain.member.AccountStatus.*;
+import static com.pgms.coredomain.domain.member.Role.*;
+
+import com.pgms.coredomain.domain.common.BaseEntity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -15,7 +20,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Member {
+public class Member extends BaseEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,17 +29,31 @@ public class Member {
 	@Column(name = "email", nullable = false)
 	private String email;
 
-	@Column(name = "password", nullable = false)
+	@Column(name = "password")
 	private String password;
 
 	@Enumerated(EnumType.STRING)
 	@Column(name = "role", nullable = false)
 	private Role role;
 
+	@Enumerated(EnumType.STRING)
+	@Column(name = "status", nullable = false)
+	private AccountStatus status;
+
+	@Enumerated(EnumType.STRING)
+	@Column(name = "provider")
+	private ProviderType providerType;
+
 	@Builder
-	public Member(String email, String password, Role role) {
+	public Member(String email, String password, ProviderType providerType) {
 		this.email = email;
 		this.password = password;
-		this.role = role;
+		this.role = ROLE_USER;
+		this.status = ACTIVE;
+		this.providerType = providerType;
+	}
+
+	public boolean isDeleted() {
+		return this.status == DELETED;
 	}
 }
