@@ -1,6 +1,6 @@
 package com.pgms.apimember.exception;
 
-import static com.pgms.apimember.exception.MemberErrorCode.*;
+import static com.pgms.coredomain.domain.common.MemberErrorCode.*;
 
 import java.util.List;
 import java.util.Objects;
@@ -13,6 +13,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import com.pgms.coredomain.domain.common.MemberErrorCode;
 import com.pgms.coredomain.response.ErrorResponse;
 
 import lombok.extern.slf4j.Slf4j;
